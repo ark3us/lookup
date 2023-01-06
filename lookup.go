@@ -27,18 +27,23 @@ func NewLookupColor(image image.Image) *Lookup {
 	}
 }
 
-// FindAllInRect searches for all occurrences of template only inside a part of the image.
+// FindInRect searches for all occurrences of template only inside a part of the image.
 // This can be used to speed up the search if you know the region of the
 // image that the template should appear in.
-func (l *Lookup) FindAllInRect(template image.Image, rect image.Rectangle, threshold float64) ([]GPoint, error) {
+func (l *Lookup) FindInRect(template image.Image, rect image.Rectangle, threshold float64, all bool) ([]GPoint, error) {
 	if len(l.imgBin.channels) == 1 {
 		template = ensureGrayScale(template)
 	}
 	tb := newImageBinary(template)
-	return lookupAll(l.imgBin, rect.Min.X, rect.Min.Y, rect.Max.X, rect.Max.Y, tb, threshold)
+	return lookupAll(l.imgBin, rect.Min.X, rect.Min.Y, rect.Max.X, rect.Max.Y, tb, threshold, all)
 }
 
 // FindAll searches for all occurrences of template inside the whole image.
 func (l *Lookup) FindAll(template image.Image, threshold float64) ([]GPoint, error) {
-	return l.FindAllInRect(template, image.Rect(0, 0, l.imgBin.width-1, l.imgBin.height-1), threshold)
+	return l.FindInRect(template, image.Rect(0, 0, l.imgBin.width-1, l.imgBin.height-1), threshold, true)
+}
+
+// FindOne searches for the first occurrence of template inside the whole image.
+func (l *Lookup) FindOne(template image.Image, threshold float64) ([]GPoint, error) {
+	return l.FindInRect(template, image.Rect(0, 0, l.imgBin.width-1, l.imgBin.height-1), threshold, false)
 }
