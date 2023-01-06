@@ -1,4 +1,4 @@
-module github.com/deluan/lookup
+module github.com/ark3us/lookup
 
 go 1.13
 

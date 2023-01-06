@@ -6,6 +6,7 @@
 [![Coverage](http://gocover.io/_badge/github.com/deluan/lookup)](http://gocover.io/github.com/deluan/lookup) 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d4ff0afbc348c6b9291e/maintainability)](https://codeclimate.com/github/deluan/lookup/maintainability)
 
+ORIGINAL REPO: https://github.com/deluan/lookup
 
 It is a nice, simple and fast library which helps you to lookup objects on a screen. It also includes 
 OCR functionality. Using Lookup you can do OCR tricks like recognizing any information in your Robot
